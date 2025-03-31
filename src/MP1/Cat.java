@@ -133,7 +133,7 @@ public class Cat implements Serializable {
     }
 
     //==========Utility==========
-    private static String validateString(String input) {
+    public static String validateString(String input) {
         if (input == null) {
             throw new IllegalArgumentException("String cannot be null");
         } else if (input.isEmpty()) {

@@ -26,6 +26,6 @@ public class Main {
         Cat cat19 = new Cat("Lily", List.of("Rabies", "FVRCP", "Leukemia"), LocalDate.of(2022, 4, 6));
         Cat cat20 = new Cat("Charlie", "Japanese Bobtail", List.of("FVRCP"), LocalDate.of(2020, 5, 13));
 
-        Cat.printCatsList(Cat.getCats());
+        UI.start();
     }
 }
