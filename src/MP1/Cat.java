@@ -1,6 +1,6 @@
 package MP1;
 
-import java.io.Serializable;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -107,7 +107,7 @@ public class Cat implements Serializable {
     //==========Methods==========
     public String getAge(){
         int months = (LocalDate.now().getYear()*12+LocalDate.now().getMonthValue()) - (birthdate.getYear()*12+birthdate.getMonthValue());
-        if (months/12 > 0) return months/12 + " years, " + (months%12) + "months";
+        if (months/12 > 0) return months/12 + " years, " + (months%12) + " months";
         return months + " months";
     }
 
@@ -125,6 +125,34 @@ public class Cat implements Serializable {
             }
         }
         return filtered;
+    }
+
+    public static void writeToFile(String filename){
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filename))) {
+            for (Cat cat : Cat.getCats()) {
+                out.writeObject(cat);
+            }
+            System.out.println("Objects serialized to " + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void readFromFile(String filename){
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            while (true) {
+                try {
+                    Cat cat = (Cat) in.readObject();
+                    cats.add(cat);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+            System.out.println("Objects deserialized from " + filename + ":");
+            Cat.printCatsList(cats);
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
