@@ -12,6 +12,7 @@ public class UI {
             "Populate cats list",
             "Display list of all cats",
             "Display list of cats filtered by race",
+            "Display minimum age to get sterilized in months",
             "Get age of a cat by name",
             "Save to file",
             "Quit"};
@@ -38,12 +39,19 @@ public class UI {
                     try {
                         System.out.print("Enter race: ");
                         String race = Cat.validateString(scanner.nextLine());
-                        Cat.printCatsList(Cat.getByRace(race));
+                        if (Cat.getByRace(race).isEmpty()) {
+                            System.out.println("No cats found");
+                        } else {
+                            Cat.printCatsList(Cat.getByRace(race));
+                        }
                     } catch (IllegalArgumentException e){
                         System.out.println("Invalid race, please try again");
                     }
                 }
                 case 5 -> {
+                    System.out.println("Minimal age for a cat to get sterilized is " + Cat.getMin_month_to_sterilize() + " months");
+                }
+                case 6 -> {
                     try {
                         System.out.print("Enter cat name: ");
                         String catName = Cat.validateString(scanner.nextLine());
@@ -54,8 +62,8 @@ public class UI {
                         System.out.println("Invalid name, please try again");
                     }
                 }
-                case 6 -> Cat.writeToFile("cats");
-                case 7 -> {
+                case 7 -> Cat.writeToFile("cats");
+                case 8 -> {
                     scanner.close();
                     return;
                 }

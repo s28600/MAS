@@ -140,6 +140,7 @@ public class Cat implements Serializable {
 
     public static void readFromFile(String filename){
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filename))) {
+            cats = new ArrayList<>();
             while (true) {
                 try {
                     Cat cat = (Cat) in.readObject();
