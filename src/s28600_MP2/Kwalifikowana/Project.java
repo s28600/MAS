@@ -28,6 +28,7 @@ public class Project {
         if (codename == null || codename.isBlank()) {
             throw new IllegalArgumentException("Project name cannot be null or blank");
         }
+        this.codename = codename;
     }
 
     public List<Employee> getWorkedOnBy() {
@@ -38,6 +39,13 @@ public class Project {
         if (!workedOnBy.contains(newEmployee)) {
             workedOnBy.add(newEmployee);
             newEmployee.addProject(this);
+        }
+    }
+
+    public void removeEmployee(Employee employee) {
+        if (workedOnBy.contains(employee)) {
+            workedOnBy.remove(employee);
+            employee.removeProject(this);
         }
     }
 }

@@ -39,4 +39,11 @@ public class Employee {
             newProject.addEmployee(this);
         }
     }
+
+    public void removeProject(Project project) {
+        if (worksOn.containsKey(project.getCodename())) {
+            worksOn.remove(project.getCodename());
+            project.removeEmployee(this);
+        }
+    }
 }
