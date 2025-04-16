@@ -5,19 +5,17 @@ import java.util.Collections;
 import java.util.List;
 
 public class Car {
-    private static List<Car> cars = new ArrayList<>();
+    private static List<Car> extent = new ArrayList<>();
     private String name;
-    private Owner owner;
+    private Owner ownedBy;
 
-    public Car(String name, Owner owner) {
+    public Car(String name) {
         setName(name);
-        setOwner(owner);
-        owner.addCar(this);
-        cars.add(this);
+        extent.add(this);
     }
 
-    public static List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
+    public static List<Car> getExtent() {
+        return Collections.unmodifiableList(extent);
     }
 
     public String getName() {
@@ -30,18 +28,23 @@ public class Car {
         this.name = name;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public Owner getOwnedBy() {
+        return ownedBy;
     }
 
-    public void setOwner(Owner owner) {
-        if (owner == null)
-            throw new IllegalArgumentException("Owner cannot be null");
-        this.owner = owner;
+    public void addOwner(Owner owner) {
+        if (ownedBy == null){
+            ownedBy = owner;
+            owner.addCar(this);
+        }
     }
 
     public void remove() {
-        owner = null;
-        cars.remove(this);
+        if (ownedBy != null){
+            ownedBy.removeCar(this);
+            ownedBy = null;
+        }
     }
+
+
 }

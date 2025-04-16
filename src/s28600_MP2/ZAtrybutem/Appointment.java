@@ -6,24 +6,30 @@ import java.util.Collections;
 import java.util.List;
 
 public class Appointment {
-    private static List<Appointment> appointments = new ArrayList<Appointment>();
+    private static List<Appointment> extent = new ArrayList<>();
     private LocalDate date;
     private Patient patient;
     private Doctor doctor;
 
     public Appointment(LocalDate date, Patient patient, Doctor doctor) {
+        for (Appointment a : extent) {
+            if (a.getDate().equals(date) && a.getPatient().equals(patient) && a.getDoctor().equals(doctor)) {
+                throw new IllegalArgumentException("Appointment already exists");
+            }
+        }
+
         setDate(date);
         setPatient(patient);
         setDoctor(doctor);
 
-        patient.addAppointment(this);
-        doctor.addAppointment(this);
+        patient.addExistingAppointment(this);
+        doctor.addExistingAppointment(this);
 
-        appointments.add(this);
+        extent.add(this);
     }
 
-    public static List<Appointment> getAppointments() {
-        return Collections.unmodifiableList(appointments);
+    public static List<Appointment> getExtent() {
+        return Collections.unmodifiableList(extent);
     }
 
     public LocalDate getDate() {
@@ -56,11 +62,22 @@ public class Appointment {
         this.doctor = doctor;
     }
 
+
+
     public void removeAppointment() {
-        patient.removeAppointment(this);
-        doctor.removeAppointment(this);
-        patient = null;
-        doctor = null;
-        appointments.remove(this);
+        if (patient != null){
+            patient.removeAppointment(this);
+            patient = null;
+        }
+        if (doctor != null){
+            doctor.removeAppointment(this);
+            doctor = null;
+        }
+        extent.remove(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment [date=" + date + ", patient=" + patient + ", doctor=" + doctor + "]";
     }
 }

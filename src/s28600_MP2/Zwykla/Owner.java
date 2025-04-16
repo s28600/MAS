@@ -32,19 +32,10 @@ public class Owner {
         return Collections.unmodifiableList(carsOwned);
     }
 
-    public void setCarsOwned(List<Car> carsOwned) {
-        if (carsOwned == null)
-            throw new IllegalArgumentException("Owned cars list cannot be null");
-        for (Car car : carsOwned) {
-            if (car == null)
-                throw new IllegalArgumentException("Car cannot be null");
-        }
-        this.carsOwned = carsOwned;
-    }
-
     public void addCar(Car car) {
         if (!carsOwned.contains(car)){
             carsOwned.add(car);
+            car.addOwner(this);
         }
     }
 
