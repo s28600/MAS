@@ -8,8 +8,6 @@ public class Employee {
     private Map<String, Project> worksOn = new TreeMap<>();
 
     public Employee(String name) {
-        if(extent.stream().anyMatch(e -> e.getName().equals(name)))
-            throw new IllegalArgumentException("Employee already exists");
         setName(name);
         extent.add(this);
     }
@@ -24,7 +22,7 @@ public class Employee {
 
     public void setName(String name) {
         if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Project name cannot be null or blank");
+            throw new IllegalArgumentException("Employee's name cannot be null or blank");
         }
         this.name = name;
     }

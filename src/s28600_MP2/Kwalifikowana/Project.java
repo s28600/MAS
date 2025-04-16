@@ -10,9 +10,10 @@ public class Project {
     private List<Employee> workedOnBy = new ArrayList<>();
 
     public Project(String codename) {
-        if(extent.stream().anyMatch(e -> e.getCodename().equals(codename)))
-            throw new IllegalArgumentException("Project already exists");
-        setCodename(codename);
+        if (codename == null || codename.isBlank()) {
+            throw new IllegalArgumentException("Project name cannot be null or blank");
+        }
+        this.codename = codename;
         extent.add(this);
     }
 
@@ -22,13 +23,6 @@ public class Project {
 
     public String getCodename() {
         return codename;
-    }
-
-    public void setCodename(String codename) {
-        if (codename == null || codename.isBlank()) {
-            throw new IllegalArgumentException("Project name cannot be null or blank");
-        }
-        this.codename = codename;
     }
 
     public List<Employee> getWorkedOnBy() {
