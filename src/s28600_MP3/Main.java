@@ -1,0 +1,31 @@
+package s28600_MP3;
+
+import s28600_MP3.Abstract.*;
+import s28600_MP3.Overlapping.*;
+
+import java.util.EnumSet;
+
+public class Main {
+    public static void main(String[] args) {
+        Cat cat = new Cat("Cat");
+        Dog dog = new Dog("Dog");
+        System.out.println(cat.timeToTravelInSeconds(20));
+        System.out.println(dog.timeToTravelInSeconds(20));
+        System.out.println(cat.timeToTravelInSeconds(200));
+        System.out.println(dog.timeToTravelInSeconds(200));
+        System.out.println(cat.timeToTravelInSeconds(0));
+        System.out.println(dog.timeToTravelInSeconds(0));
+
+        System.out.println("\n========================================\n");
+
+        Player player = new Player("Player1", EnumSet.of(PlayerClass.Mage, PlayerClass.Melee));
+        System.out.println(player.getName());
+        System.out.println(player.getPlayerClasses());
+        player.getPlayerClasses().remove(PlayerClass.Mage);
+        System.out.println(player.getPlayerClasses());
+        player.setMagicDamageMultiplier(2);
+        System.out.println(player.getMagicDamageMultiplier());
+        player.setMeleeDamageMultiplier(2);
+        System.out.println(player.getMeleeDamageMultiplier());
+    }
+}
