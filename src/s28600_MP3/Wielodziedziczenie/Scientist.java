@@ -33,4 +33,9 @@ public class Scientist extends Person {
     public void doResearch() {
         System.out.println("Doing research");
     }
+
+    @Override
+    public double getIncome() {
+        return getSalary();
+    }
 }

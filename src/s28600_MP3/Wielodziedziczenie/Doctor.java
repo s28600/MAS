@@ -2,6 +2,7 @@ package s28600_MP3.Wielodziedziczenie;
 
 public class Doctor extends Person implements IDoctor{
     private double salary;
+    private DoctorScientist doctorScientist;
 
     public Doctor(String name, double salary) {
         super(name);
@@ -18,8 +19,28 @@ public class Doctor extends Person implements IDoctor{
         this.salary = salary;
     }
 
+    public DoctorScientist getDoctorScientist() {
+        return doctorScientist;
+    }
+
+    public void setDoctorScientist(DoctorScientist doctorScientist) {
+        if (doctorScientist == null)
+            throw new IllegalArgumentException("DoctorScientist cannot be null");
+        this.doctorScientist = doctorScientist;
+    }
+
     @Override
     public void admitPatient() {
         System.out.println("Admitting patient");
+    }
+
+    @Override
+    public void analyzeTests() {
+        System.out.println("Analyzing tests");
+    }
+
+    @Override
+    public double getIncome() {
+        return getSalary();
     }
 }

@@ -16,4 +16,6 @@ public abstract class Person {
             throw new IllegalArgumentException("Name cannot be null or blank");
         this.name = name;
     }
+
+    public abstract double getIncome();
 }

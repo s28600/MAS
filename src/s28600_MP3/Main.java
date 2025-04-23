@@ -32,10 +32,10 @@ public class Main {
         System.out.println("\n========================================\n");
 
         Doctor doctor = new Doctor("Doctor", 1234);
-        Scientist scientist = new Scientist("Scientist", 1234, "Oncology");
-        DoctorScientist doctorScientist = new DoctorScientist("Doctor", 1234, "Physiology");
+        DoctorScientist doctorScientist = DoctorScientist.createDoctorScientist(doctor, 1234, "Physiology");
         doctorScientist.admitPatient();
+        doctorScientist.analyzeTests();
         doctorScientist.doResearch();
-
+        System.out.println(doctorScientist.getIncome());
     }
 }
