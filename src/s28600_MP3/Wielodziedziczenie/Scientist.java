@@ -1,23 +1,11 @@
 package s28600_MP3.Wielodziedziczenie;
 
-public class Scientist extends Person {
-    private double salary;
+public class Scientist extends Employee {
     private String expertiseField;
 
     public Scientist(String name, double salary, String expertiseField) {
-        super(name);
-        setSalary(salary);
+        super(name, salary);
         setExpertiseField(expertiseField);
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(double salary) {
-        if (salary < 0)
-            throw new IllegalArgumentException("Salary cannot be negative");
-        this.salary = salary;
     }
 
     public String getExpertiseField() {
@@ -32,10 +20,5 @@ public class Scientist extends Person {
 
     public void doResearch() {
         System.out.println("Doing research");
-    }
-
-    @Override
-    public double getIncome() {
-        return getSalary();
     }
 }

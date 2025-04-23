@@ -36,6 +36,13 @@ public class Main {
         doctorScientist.analyzeTests();
         doctorScientist.doResearch();
         System.out.println(doctorScientist.getName());
-        System.out.println(doctorScientist.getIncome());
+        System.out.println(doctorScientist.getSalary());
+        System.out.println("Doctor extent: " + Doctor.getExtent());
+        System.out.println("Doctor scientist extent: " + DoctorScientist.getExtent());
+        doctorScientist.remove();
+        System.out.println("Doctor extent: " + Doctor.getExtent());
+        System.out.println("Doctor scientist extent: " + DoctorScientist.getExtent());
+
+
     }
 }

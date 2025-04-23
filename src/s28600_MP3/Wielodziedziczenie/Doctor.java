@@ -1,30 +1,30 @@
 package s28600_MP3.Wielodziedziczenie;
 
-public class Doctor extends Person implements IDoctor{
-    private double salary;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class Doctor extends Employee implements IDoctor{
+    private static List<Doctor> extent = new ArrayList<>();
     private int licenseNumber;
     private DoctorScientist doctorScientist;
 
     public Doctor(String name, double salary, int licenseNumber) {
-        super(name);
-        setSalary(salary);
+        super(name, salary);
         setLicenseNumber(licenseNumber);
+        extent.add(this);
     }
 
-    public double getSalary() {
-        return salary;
+    public static List<Doctor> getExtent() {
+        return Collections.unmodifiableList(extent);
     }
 
-    public void setSalary(double salary) {
-        if (salary < 0)
-            throw new IllegalArgumentException("Salary cannot be negative");
-        this.salary = salary;
-    }
-
+    @Override
     public int getLicenseNumber() {
         return licenseNumber;
     }
 
+    @Override
     public void setLicenseNumber(int licenseNumber) {
         if (licenseNumber < 0)
             throw new IllegalArgumentException("License number cannot be negative");
@@ -41,6 +41,15 @@ public class Doctor extends Person implements IDoctor{
         this.doctorScientist = doctorScientist;
     }
 
+    public void remove() {
+        if(extent.remove(this)) {
+            if (doctorScientist != null) {
+                doctorScientist.remove();
+                doctorScientist = null;
+            }
+        }
+    }
+
     @Override
     public void admitPatient() {
         System.out.println("Admitting patient");
@@ -49,10 +58,5 @@ public class Doctor extends Person implements IDoctor{
     @Override
     public void analyzeTests() {
         System.out.println("Analyzing tests");
-    }
-
-    @Override
-    public double getIncome() {
-        return getSalary();
     }
 }
