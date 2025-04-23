@@ -2,11 +2,13 @@ package s28600_MP3.Wielodziedziczenie;
 
 public class Doctor extends Person implements IDoctor{
     private double salary;
+    private int licenseNumber;
     private DoctorScientist doctorScientist;
 
-    public Doctor(String name, double salary) {
+    public Doctor(String name, double salary, int licenseNumber) {
         super(name);
         setSalary(salary);
+        setLicenseNumber(licenseNumber);
     }
 
     public double getSalary() {
@@ -17,6 +19,16 @@ public class Doctor extends Person implements IDoctor{
         if (salary < 0)
             throw new IllegalArgumentException("Salary cannot be negative");
         this.salary = salary;
+    }
+
+    public int getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    public void setLicenseNumber(int licenseNumber) {
+        if (licenseNumber < 0)
+            throw new IllegalArgumentException("License number cannot be negative");
+        this.licenseNumber = licenseNumber;
     }
 
     public DoctorScientist getDoctorScientist() {

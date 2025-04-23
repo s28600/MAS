@@ -31,11 +31,11 @@ public class Main {
 
         System.out.println("\n========================================\n");
 
-        Doctor doctor = new Doctor("Doctor", 1234);
-        DoctorScientist doctorScientist = DoctorScientist.createDoctorScientist(doctor, 1234, "Physiology");
+        DoctorScientist doctorScientist = new DoctorScientist("Doctor", 1234, 1234, 1234, "Physiology");
         doctorScientist.admitPatient();
         doctorScientist.analyzeTests();
         doctorScientist.doResearch();
+        System.out.println(doctorScientist.getName());
         System.out.println(doctorScientist.getIncome());
     }
 }
