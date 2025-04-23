@@ -2,6 +2,7 @@ package s28600_MP3;
 
 import s28600_MP3.Abstract.*;
 import s28600_MP3.Overlapping.*;
+import s28600_MP3.Wielodziedziczenie.*;
 
 import java.util.EnumSet;
 
@@ -27,5 +28,14 @@ public class Main {
         System.out.println(player.getMagicDamageMultiplier());
         player.setMeleeDamageMultiplier(2);
         System.out.println(player.getMeleeDamageMultiplier());
+
+        System.out.println("\n========================================\n");
+
+        Doctor doctor = new Doctor("Doctor", 1234);
+        Scientist scientist = new Scientist("Scientist", 1234, "Oncology");
+        DoctorScientist doctorScientist = new DoctorScientist("Doctor", 1234, "Physiology");
+        doctorScientist.admitPatient();
+        doctorScientist.doResearch();
+
     }
 }
