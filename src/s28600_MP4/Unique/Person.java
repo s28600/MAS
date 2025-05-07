@@ -34,6 +34,8 @@ public class Person {
     }
 
     public void setPassportNumber(String passportNumber) {
+        if (passportNumber == null || passportNumber.isBlank())
+            throw new IllegalArgumentException("Passport number cannot be null or blank");
         if (extent.stream().anyMatch(p -> p.getPassportNumber().equals(passportNumber)))
             throw new IllegalArgumentException("Person with same passport number already exists");
         this.passportNumber = passportNumber;
