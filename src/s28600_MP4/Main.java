@@ -1,8 +1,12 @@
 package s28600_MP4;
 
 import s28600_MP4.Atrybut.CreditCard;
+import s28600_MP4.Bag.*;
+import s28600_MP4.Own.CarReservation;
 import s28600_MP4.Subset.*;
 import s28600_MP4.Unique.Person;
+
+import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
@@ -114,5 +118,44 @@ public class Main {
         System.out.println("Student 2 ITN groups: " + student2.getHasITNIn());
         System.out.println("Student 3 ITN groups: " + student3.getHasITNIn());
         System.out.println("ITN students in group: " + group.getITNStudents());
+
+        System.out.println("\n========================================\n");
+
+        System.out.println("---------------Adding orders---------------");
+        Client client = new Client("Client");
+        Product product = new Product("Product");
+        client.addNewOrder(product, 1);
+        product.addNewOrder(client, 1);
+        Order order1 = new Order(client, product, 1);
+        Order order2 = new Order(client, product, 1);
+        Order order3 = new Order(client, product, 1);
+        System.out.println(client.getOrders());
+        System.out.println(product.getOrders());
+        System.out.println(Order.getExtent());
+        System.out.println("---------------Removing orders---------------");
+        client.removeOrder(order1);
+        product.removeOrder(order2);
+        order3.remove();
+        System.out.println(client.getOrders());
+        System.out.println(product.getOrders());
+        System.out.println(Order.getExtent());
+        System.out.println("---------------Removing client/product---------------");
+        //client.remove();
+        product.remove();
+        System.out.println(client.getOrders());
+        System.out.println(product.getOrders());
+        System.out.println(Order.getExtent());
+
+        System.out.println("\n========================================\n");
+
+        LocalDate before = LocalDate.of(2025, 5, 6);
+        LocalDate after = LocalDate.now();
+        try {
+            CarReservation carReservation = new CarReservation(18, after, before);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        CarReservation carReservation = new CarReservation(18, before, after);
     }
 }

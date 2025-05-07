@@ -17,7 +17,6 @@ public class Order {
 
         client.addExistingOrder(this);
         product.addExistingOrder(this);
-
         extent.add(this);
     }
 

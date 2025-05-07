@@ -56,4 +56,10 @@ public class Product {
             order.remove();
         }
     }
+
+    public void remove(){
+        while (!orders.isEmpty())
+            orders.getFirst().remove();
+        extent.remove(this);
+    }
 }
