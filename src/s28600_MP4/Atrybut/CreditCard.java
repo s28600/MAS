@@ -1,17 +1,17 @@
 package s28600_MP4.Atrybut;
 
 public class CreditCard {
-    private float debt = 0.0f;
+    private double debt = 0.0f;
 
-    public CreditCard(float debt) {
+    public CreditCard(double debt) {
         setDebt(debt);
     }
 
-    public float getDebt() {
+    public double getDebt() {
         return debt;
     }
 
-    public void setDebt(float debt) {
+    public void setDebt(double debt) {
         if (debt < this.debt)
             throw new IllegalArgumentException("New debt cannot be less than before");
         if (debt > 10000)

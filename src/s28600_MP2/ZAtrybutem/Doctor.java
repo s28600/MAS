@@ -35,6 +35,10 @@ public class Doctor {
     }
 
     public void addNewAppointment(LocalDate date, Patient patient) {
+        if (date == null)
+            throw new IllegalArgumentException("Date cannot be null");
+        if (patient == null)
+            throw new IllegalArgumentException("Patient cannot be null");
         for (Appointment appointment : appointments) {
             if (appointment.getDate().equals(date) && appointment.getPatient().equals(patient)) {
                 throw new IllegalArgumentException("Appointment already exists");
@@ -44,11 +48,15 @@ public class Doctor {
     }
 
     public void addExistingAppointment(Appointment appointment) {
+        if (appointment == null)
+            throw new IllegalArgumentException("Appointment cannot be null");
         if (!appointments.contains(appointment))
             appointments.add(appointment);
     }
 
     public void removeAppointment(Appointment appointment) {
+        if (appointment == null)
+            throw new IllegalArgumentException("Appointment cannot be null");
         if (appointments.contains(appointment)){
             appointments.remove(appointment);
             appointment.removeAppointment();
