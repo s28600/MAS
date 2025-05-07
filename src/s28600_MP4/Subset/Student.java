@@ -5,12 +5,18 @@ import java.util.Collections;
 import java.util.List;
 
 public class Student {
+    private static List<Student> extent = new ArrayList<>();
     private String name;
     private List<Group> partOf = new ArrayList<>();
     private List<Group> hasITNIn = new ArrayList<>();
 
     public Student(String name) {
         setName(name);
+        extent.add(this);
+    }
+
+    public static List<Student> getExtent() {
+        return Collections.unmodifiableList(extent);
     }
 
     public String getName() {
@@ -66,5 +72,11 @@ public class Student {
             partOf.remove(group);
             group.removeStudent(this);
         }
+    }
+
+    public void remove() {
+        while (!partOf.isEmpty())
+            removeGroup(partOf.getFirst());
+        extent.remove(this);
     }
 }

@@ -2,14 +2,18 @@ package s28600_MP4;
 
 import s28600_MP4.Atrybut.CreditCard;
 import s28600_MP4.Bag.*;
+import s28600_MP4.Ordered.Task;
 import s28600_MP4.Own.CarReservation;
 import s28600_MP4.Subset.*;
 import s28600_MP4.Unique.Person;
+import s28600_MP4.XOR.*;
 
 import java.time.LocalDate;
 
 public class Main {
     public static void main(String[] args) {
+        System.out.println("\n====================Attribute====================\n");
+
         CreditCard cc = new CreditCard(100);
         try {
             cc.setDebt(10);
@@ -26,7 +30,7 @@ public class Main {
         cc.setDebt(1000);
         System.out.println(cc.getDebt());
 
-        System.out.println("\n========================================\n");
+        System.out.println("\n====================Unique====================\n");
 
         Person person1 = new Person("Person1", "PN12983712");
         try {
@@ -36,7 +40,7 @@ public class Main {
             System.out.println(e);
         }
 
-        System.out.println("\n========================================\n");
+        System.out.println("\n====================Subset====================\n");
 
         Student student1 = new Student("Student1");
         Student student2 = new Student("Student2");
@@ -119,7 +123,7 @@ public class Main {
         System.out.println("Student 3 ITN groups: " + student3.getHasITNIn());
         System.out.println("ITN students in group: " + group.getITNStudents());
 
-        System.out.println("\n========================================\n");
+        System.out.println("\n====================Bag====================\n");
 
         System.out.println("---------------Adding orders---------------");
         Client client = new Client("Client");
@@ -146,7 +150,7 @@ public class Main {
         System.out.println(product.getOrders());
         System.out.println(Order.getExtent());
 
-        System.out.println("\n========================================\n");
+        System.out.println("\n====================Own====================\n");
 
         LocalDate before = LocalDate.of(2025, 5, 6);
         LocalDate after = LocalDate.now();
@@ -157,5 +161,43 @@ public class Main {
             System.out.println(e);
         }
         CarReservation carReservation = new CarReservation(18, before, after);
+
+        System.out.println("\n====================Ordered====================\n");
+
+        Task task1 = new Task("Task1", 1);
+        Task task2 = new Task("Task2", 2);
+        Task task3 = new Task("Task3", 2);
+        Task task4 = new Task("Task4", 1);
+        Task task5 = new Task("Task5", 3);
+        for (Task t : Task.getExtent())
+            System.out.println(t);
+        System.out.println();
+        task1.setPriority(4);
+        for (Task t : Task.getExtent())
+            System.out.println(t);
+        System.out.println();
+
+        System.out.println("\n====================XOR====================\n");
+        Car car = new Car("Car");
+        Rental rental = new Rental("Rental");
+        s28600_MP4.XOR.Person person = new s28600_MP4.XOR.Person("Person");
+        car.setRentedBy(person);
+        System.out.println(car.getRentedBy());
+        System.out.println(person.getRents());
+        try {
+            car.setInPossessionOf(rental);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+        car.removeRentedBy();
+        System.out.println(car.getRentedBy());
+        System.out.println(person.getRents());
+        car.setInPossessionOf(rental);
+        System.out.println(car.getInPossessionOf());
+        System.out.println(rental.getPossesses());
+        car.removeInPossessionOf();
+        System.out.println(car.getInPossessionOf());
+        System.out.println(rental.getPossesses());
     }
 }
